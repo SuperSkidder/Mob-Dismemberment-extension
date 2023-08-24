@@ -71,7 +71,7 @@ public class EventHandlerClient
                             explosionSources.add(ent);
                         }
                     }
-                    if((ent instanceof EntityZombie || ent instanceof EntitySkeleton || ent instanceof EntityCreeper) && !ent.isEntityAlive() && !dismemberTimeout.containsKey(ent))
+                    if((ent instanceof EntityZombie || ent instanceof EntitySkeleton || ent instanceof EntityCreeper || ent instanceof EntityPlayer) && !ent.isEntityAlive() && !dismemberTimeout.containsKey(ent))
                     {
                         dismemberTimeout.put((EntityLivingBase)ent, 2);
                     }
@@ -197,7 +197,7 @@ public class EventHandlerClient
                 world.spawnEntity(new EntityGib(world, living, i, explo));
             }
 
-            if(living instanceof EntityZombie && MobDismemberment.config.blood == 1)
+            if(living instanceof EntityZombie|| living instanceof EntityPlayer && MobDismemberment.config.blood == 1)
             {
                 for(int k = 0; k < (explo != null ? MobDismemberment.config.bloodCount * 10 : MobDismemberment.config.bloodCount); k++)
                 {
