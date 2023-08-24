@@ -5,6 +5,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class ModelGib extends ModelBase
 {
@@ -104,7 +105,7 @@ public class ModelGib extends ModelBase
             EntityGib gib = (EntityGib)ent;
             if(gib.type == 0)
             {
-                if(gib.parent instanceof EntityZombie)
+                if(gib.parent instanceof EntityZombie || gib.parent instanceof EntityPlayer)
                 {
                     head64.render(f5);
                 }
@@ -115,7 +116,7 @@ public class ModelGib extends ModelBase
             }
             else if(gib.type == 1 || gib.type == 2)
             {
-                if(gib.parent instanceof EntityZombie)
+                if(gib.parent instanceof EntityZombie || gib.parent instanceof EntityPlayer)
                 {
                     arm64.render(f5);
                 }
@@ -126,7 +127,7 @@ public class ModelGib extends ModelBase
             }
             else if(gib.type == 3) //body
             {
-                if(gib.parent instanceof EntityZombie)
+                if(gib.parent instanceof EntityZombie || gib.parent instanceof EntityPlayer)
                 {
                     body64.render(f5);
                 }
@@ -137,7 +138,7 @@ public class ModelGib extends ModelBase
             }
             else if(gib.type == 4 || gib.type == 5) //legs
             {
-                if(gib.parent instanceof EntityZombie)
+                if(gib.parent instanceof EntityZombie || gib.parent instanceof EntityPlayer)
                 {
                     leg64.render(f5);
                 }

@@ -2,10 +2,10 @@ package me.ichun.mods.mobdismemberment.client.core;
 
 import me.ichun.mods.ichunutil.client.render.RendererHelper;
 import me.ichun.mods.ichunutil.common.iChunUtil;
-import me.ichun.mods.mobamputation.common.MobAmputation;
 import me.ichun.mods.mobdismemberment.client.entity.EntityGib;
 import me.ichun.mods.mobdismemberment.client.particle.ParticleBlood;
 import me.ichun.mods.mobdismemberment.common.MobDismemberment;
+import me.ichun.mods.mobdismemberment.mixins.IEntityCreeper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.Entity;
@@ -15,6 +15,7 @@ import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -36,7 +37,7 @@ public class EventHandlerClient
     @SubscribeEvent
     public void onLivingDeath(LivingDeathEvent event)
     {
-        if(event.getEntity().world.isRemote && (event.getEntityLiving() instanceof EntityZombie || event.getEntityLiving() instanceof EntitySkeleton || event.getEntityLiving() instanceof EntityCreeper) && !event.getEntityLiving().isChild())
+        if(event.getEntity().world.isRemote && (event.getEntityLiving() instanceof EntityZombie || event.getEntityLiving() instanceof EntitySkeleton || event.getEntityLiving() instanceof EntityCreeper || event.getEntityLiving() instanceof EntityPlayer) && !event.getEntityLiving().isChild())
         {
             dismemberTimeout.put(event.getEntityLiving(), 2);
         }
@@ -82,8 +83,8 @@ public class EventHandlerClient
                     {
                         if(ent instanceof EntityCreeper)
                         {
-                            int igniteTime = ((EntityCreeper)ent).timeSinceIgnited;
-                            int maxFuseTime = ((EntityCreeper)ent).fuseTime;
+                            int igniteTime = ((IEntityCreeper)ent).getTimeSinceIgnited();
+                            int maxFuseTime = ((IEntityCreeper)ent).getFuseTime();
                             if(igniteTime >= maxFuseTime)
                             {
                                 if(!exploTime.containsKey(ent))
@@ -182,17 +183,17 @@ public class EventHandlerClient
         {
             for(int i = 0; i < 6; i++)
             {
-                if(MobDismemberment.hasMobAmputation() && i <= 2)
-                {
-                    me.ichun.mods.mobamputation.client.entity.EntityGib[] gibs = MobAmputation.eventHandlerClient.amputationMap.get(living);
-                    if(gibs != null && i < gibs.length)
-                    {
-                        if(!gibs[i].attached)
-                        {
-                            continue;
-                        }
-                    }
-                }
+//                if(MobDismemberment.hasMobAmputation() && i <= 2)
+//                {
+//                    me.ichun.mods.mobamputation.client.entity.EntityGib[] gibs = MobAmputation.eventHandlerClient.amputationMap.get(living);
+//                    if(gibs != null && i < gibs.length)
+//                    {
+//                        if(!gibs[i].attached)
+//                        {
+//                            continue;
+//                        }
+//                    }
+//                }
                 world.spawnEntity(new EntityGib(world, living, i, explo));
             }
 
