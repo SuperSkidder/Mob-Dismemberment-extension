@@ -1,4 +1,4 @@
-package me.ichun.mods.mobdismemberment.mixins;
+package me.ichun.mods.mobdismemberment;
 
 public interface IEntityCreeper {
     public int getTimeSinceIgnited();

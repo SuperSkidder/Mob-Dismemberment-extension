@@ -5,7 +5,7 @@ import me.ichun.mods.ichunutil.common.iChunUtil;
 import me.ichun.mods.mobdismemberment.client.entity.EntityGib;
 import me.ichun.mods.mobdismemberment.client.particle.ParticleBlood;
 import me.ichun.mods.mobdismemberment.common.MobDismemberment;
-import me.ichun.mods.mobdismemberment.mixins.IEntityCreeper;
+import me.ichun.mods.mobdismemberment.IEntityCreeper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.Entity;

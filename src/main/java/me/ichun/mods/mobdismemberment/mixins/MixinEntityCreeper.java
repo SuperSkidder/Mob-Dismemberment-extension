@@ -1,5 +1,6 @@
 package me.ichun.mods.mobdismemberment.mixins;
 
+import me.ichun.mods.mobdismemberment.IEntityCreeper;
 import net.minecraft.entity.monster.EntityCreeper;
 import org.spongepowered.asm.mixin.Implements;
 import org.spongepowered.asm.mixin.Interface;
